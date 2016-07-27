@@ -22,14 +22,17 @@ module.exports = function(app,db)
       });
     }else if(user_id){
       collection_storage.findOne({'fid':user_id},function(err, result){
-        var ingredients = result.ingredients;
+        var ingredients = [];
+        try{
+          ingredients = result.ingredients;
+        }
+        catch(exception){}
         console.log(ingredients);
         collection.find().sort({"rank":1}).toArray(function (err, result2) {
           var result_exact = [];
           for(var i =0;i<result2.length;i++){
             var dup_list = result2[i].main_ingredients.filter(function(val) {
               return ingredients.indexOf(val[0]) != -1;
-
             });
             if(dup_list.length>0)
               console.log(dup_list.length);

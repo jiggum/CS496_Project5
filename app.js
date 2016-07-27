@@ -12,7 +12,7 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb://127.0.0.1:27019/test');
+mongoose.connect('mongodb://127.0.0.1:27019/recipe');
 
 // [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({ extended: true }));
